@@ -26,7 +26,7 @@ public class RegisterController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String RegisterUser(User user, Model model) {
+	public String registerUser(User user, Model model) {
 
 		//System.out.println(user);
 		
