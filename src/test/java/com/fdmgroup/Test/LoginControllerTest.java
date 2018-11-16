@@ -15,8 +15,6 @@ import com.fdmgroup.spring.web.controller.LoginController;
 
 import static org.mockito.Mockito.*;
 
-import javax.persistence.EntityManagerFactory;
-
 
 public class LoginControllerTest {
 	
@@ -65,5 +63,46 @@ public class LoginControllerTest {
 		assertEquals(nextPage, "login");
 	}
 	
+	@Test
+	public void when_enterIncorrectPassword_then_returnLoginJspAndShowInvalidPassword() {
+		
+		//arrange
+		Model mockModel = mock(Model.class);
+		User mockUser = mock(User.class);
+		when(mockUser.getUsername()).thenReturn("qzzz");
+		when(mockUser.getPassword()).thenReturn("123");
+		User expectedUser = mock(User.class);
+		when(uDao.get("qzzz")).thenReturn(expectedUser);
+		when(expectedUser.getPassword()).thenReturn("Qz406550629!");
+		
+		//act
+		String nextPage = lc.loginUser(mockUser, mockModel);
+		
+		//
+		verify(uDao).get("qzzz");
+		verify(mockModel).addAttribute("blank_login_user", mockUser);
+		verify(mockModel).addAttribute("fail_msg", "invalid password");
+		assertEquals(nextPage, "login");
+	}
 	
+	@Test
+	public void when_enterCorrectUsernameAndPassword_then_returnHomeJsp() {
+		
+		//arrange
+		Model mockModel = mock(Model.class);
+		User mockUser = mock(User.class);
+		when(mockUser.getUsername()).thenReturn("qzzz");
+		when(mockUser.getPassword()).thenReturn("Qz406550629!");
+		User expectedUser = mock(User.class);
+		when(uDao.get("qzzz")).thenReturn(expectedUser);
+		when(expectedUser.getPassword()).thenReturn("Qz406550629!");
+		
+		//act
+		String nextPage = lc.loginUser(mockUser, mockModel);
+		
+		//
+		verify(uDao).get("qzzz");
+		verify(mockModel).addAttribute("blank_login_user", mockUser);
+		assertEquals(nextPage, "home");
+	}
 }
