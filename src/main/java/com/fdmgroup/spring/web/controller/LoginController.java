@@ -1,7 +1,5 @@
 package com.fdmgroup.spring.web.controller;
 
-import java.util.Random;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fdmgroup.DAO.UserDao;
 import com.fdmgroup.Entities.User;
+import static com.fdmgroup.spring.web.model.LoginModel.*;;
 
 @Controller
 @RequestMapping(value = "/login")
@@ -49,13 +48,7 @@ public class LoginController {
 			String username = user.getUsername();
 			model.addAttribute("active_user", username);
 
-			String[] gemArr = { "Diamond", "Carbonado", "Morganite", "Jade", "Zircon", "Amethyst", "Benitoite",
-					"Neptunite", "Rutile", "Obsidian", "Alexandrite", "Euclase", "Peridot", "Antarcticite", "Sphene",
-					"Sapphire", "Ruby", "Tourmaline", "Cinnabar", "Phosphophyllite" };
-
-			Random r = new Random();
-			int randomInt = r.nextInt(20);
-			String luckyGem = gemArr[randomInt];
+			String luckyGem = generateLuckyGem();
 			model.addAttribute("lucky_gem", luckyGem);
 
 			return "home";

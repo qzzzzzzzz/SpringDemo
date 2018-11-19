@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fdmgroup.DAO.UserDao;
 import com.fdmgroup.Entities.User;
+import static com.fdmgroup.spring.web.model.RegisterModel.*;
 
 @Controller
 @RequestMapping(value = "/register")
@@ -28,14 +29,10 @@ public class RegisterController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String registerUser(User user, Model model) {
 
-		//System.out.println(user);
 		
-		boolean success = true;
-			
+		boolean success = false;			
 		String failMsg = "";
-		
 		User expected = uDao.get(user.getUsername());
-		
 		if(expected != null) {
 			
 			success = false;
@@ -47,72 +44,16 @@ public class RegisterController {
 		
 		}else {
 			
-			failMsg = "Your password should contain ";
-			int wrongTime = 0;
-			
-			if(user.getPassword().equals(user.getPassword().toLowerCase())) {
+			failMsg = generateFailMsg(user.getPassword());
+			if (failMsg.equals("Your password should contain ")) {
 				
-				success = false;
-				if (wrongTime != 0) {
-						
-					failMsg += ", ";
-				}
-				failMsg += "at least ONE uppercase letter";
-				wrongTime++;
-			}
-				
-			if(user.getPassword().equals(user.getPassword().toUpperCase())) {
-					
-				success = false;
-				if (wrongTime != 0) {
-						
-					failMsg += ", ";
-				}
-					
-				failMsg += "at least ONE lowercase letter";
-				wrongTime++;
-			}
-				
-			if(!user.getPassword().matches(".*\\d.*")) {
-	
-				success = false;
-				if (wrongTime != 0) {
-						
-					failMsg += ", ";
-				}
-					
-				failMsg += "at least ONE number";
-				wrongTime++;
-			}
-				
-			if(user.getPassword().matches("[a-zA-Z0-9 ]*")) {
-					
-				success = false;
-				if (wrongTime != 0) {
-						
-					failMsg += ", ";
-				}
-					
-				failMsg += "at least ONE special symbol";
-				wrongTime++;
-			}
-				
-			if(user.getPassword().length() < 8) {
-	
-				success = false;
-				if (wrongTime != 0) {
-						
-					failMsg += ", ";
-				}
-					
-				failMsg += "at least EIGHT characters";
+				success = true;
 			}
 		}
 		
 		if (success) {
 			
 			uDao.add(user);
-			
 			user.setPassword("");
 			model.addAttribute("blank_login_user", user);
 			model.addAttribute("success_msg", "You have successfully registered, please login");
@@ -120,13 +61,10 @@ public class RegisterController {
 		
 		}else {
 			
-			failMsg += ".";
 			user.setPassword("");
 			model.addAttribute("blank_register_user", user);
 			model.addAttribute("fail_msg", failMsg);
 			return "register";
-
 		}
 	}
-
 }

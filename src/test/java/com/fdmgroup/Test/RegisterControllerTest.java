@@ -79,7 +79,7 @@ public class RegisterControllerTest {
 		//assert
 		assertEquals("register", nextPage);
 		verify(mockModel).addAttribute("blank_register_user", mockUser);
-		verify(mockModel).addAttribute("fail_msg", "Your password should contain at least ONE uppercase letter, at least ONE number, at least ONE special symbol, at least EIGHT characters.");
+		verify(mockModel).addAttribute("fail_msg", "Your password should contain at least ONE uppercase letter, at least ONE number, at least ONE special symbol, at least EIGHT characters");
 	}
 	
 	@Test
