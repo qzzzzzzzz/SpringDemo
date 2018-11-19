@@ -1,5 +1,7 @@
 package com.fdmgroup.spring.web.controller;
 
+import static com.fdmgroup.spring.web.service.RegisterModel.*;
+
 import javax.annotation.Resource;
 
 
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fdmgroup.DAO.UserDao;
 import com.fdmgroup.Entities.User;
-import static com.fdmgroup.spring.web.model.RegisterModel.*;
 
 @Controller
 @RequestMapping(value = "/register")

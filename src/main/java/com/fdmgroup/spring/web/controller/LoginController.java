@@ -1,5 +1,7 @@
 package com.fdmgroup.spring.web.controller;
 
+import static com.fdmgroup.spring.web.service.LoginModel.*;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -9,8 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.fdmgroup.DAO.UserDao;
-import com.fdmgroup.Entities.User;
-import static com.fdmgroup.spring.web.model.LoginModel.*;;
+import com.fdmgroup.Entities.User;;
 
 @Controller
 @RequestMapping(value = "/login")

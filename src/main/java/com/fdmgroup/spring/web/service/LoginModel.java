@@ -1,4 +1,4 @@
-package com.fdmgroup.spring.web.model;
+package com.fdmgroup.spring.web.service;
 
 import java.util.Random;
 
