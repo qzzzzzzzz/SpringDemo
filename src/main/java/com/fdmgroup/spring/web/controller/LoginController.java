@@ -54,6 +54,8 @@ public class LoginController {
 
 			return "home";
 		}
+		
+		return "test";
 	}
 
 }
