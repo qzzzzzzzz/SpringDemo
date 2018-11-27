@@ -1,6 +1,6 @@
 package com.fdmgroup.spring.web.service;
 
-public class RegisterModel {
+public class RegisterService {
 	
 	public static String generateFailMsg(String password) {
 		

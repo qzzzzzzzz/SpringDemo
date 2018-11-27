@@ -1,6 +1,6 @@
 package com.fdmgroup.spring.web.controller;
 
-import static com.fdmgroup.spring.web.service.RegisterModel.*;
+import static com.fdmgroup.spring.web.service.RegisterService.*;
 
 import javax.annotation.Resource;
 

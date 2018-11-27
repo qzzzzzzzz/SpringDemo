@@ -2,7 +2,7 @@ package com.fdmgroup.spring.web.service;
 
 import java.util.Random;
 
-public class LoginModel {
+public class LoginService {
 	
 	public static String generateLuckyGem() {
 		

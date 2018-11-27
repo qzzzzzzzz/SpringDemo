@@ -1,6 +1,6 @@
 package com.fdmgroup.spring.web.controller;
 
-import static com.fdmgroup.spring.web.service.LoginModel.*;
+import static com.fdmgroup.spring.web.service.LoginService.*;
 
 import javax.annotation.Resource;
 
